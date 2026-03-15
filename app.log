@@ -1,0 +1,7 @@
+
+> ritelkit-app@0.0.1 dev /home/dev/project/ritelkit-dev/ritelkit-app
+> XDG_CONFIG_HOME=/tmp/wrangler wrangler types && astro dev --port 4321
+
+sh: 1: wrangler: not found
+ ELIFECYCLE  Command failed.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

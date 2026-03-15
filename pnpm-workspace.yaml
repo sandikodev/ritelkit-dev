@@ -1,0 +1,10 @@
+packages:
+  - ritelkit
+  - ritelkit-app
+
+onlyBuiltDependencies:
+  - '@parcel/watcher'
+  - esbuild
+  - puppeteer
+  - sharp
+  - workerd

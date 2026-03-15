@@ -1,0 +1,7 @@
+
+> ritelkit@0.1.0 dev /home/dev/project/ritelkit-dev/ritelkit
+> astro dev --port 4322
+
+sh: 1: astro: not found
+ ELIFECYCLE  Command failed.
+ WARN   Local package.json exists, but node_modules missing, did you mean to install?

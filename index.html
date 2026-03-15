@@ -440,15 +440,15 @@
                 </div>
                 <div class="step-card">
                     <span class="step-num">02</span>
-                    <h4>Config /etc/hosts</h4>
-                    <p>Petakan domain ritelkit ke local machine Anda untuk simulasi multi-tenant yang akurat.</p>
-                    <div class="code-snippet">127.0.0.1 ritelkit.local</div>
+                    <h4>Domain Stable</h4>
+                    <p>Lupakan port. RitelKit menggunakan .localhost:1355 yang stabil untuk Dashboard dan App.</p>
+                    <div class="code-snippet">ritelkit.localhost:1355</div>
                 </div>
                 <div class="step-card">
                     <span class="step-num">03</span>
-                    <h4>Instant Runner</h4>
-                    <p>Gunakan script instan kami untuk menyalakan ekosistem Dashboard dan App sekaligus.</p>
-                    <div class="code-snippet">sudo ./dev.sh</div>
+                    <h4>Portless Runner</h4>
+                    <p>Jalankan runner pintar kami yang otomatis mengelola orkestrasi domain lokal.</p>
+                    <div class="code-snippet">./dev.sh</div>
                 </div>
             </div>
         </section>
@@ -460,7 +460,7 @@
                 <p>Mesin administrasi terpusat. Mengelola tenant, audit log global, penagihan, serta monitoring stok seluruh titik cabang secara real-time.</p>
                 <div class="card-links">
                     <a href="https://github.com/sandikodev/ritelkit" class="btn btn-primary">Repositori</a>
-                    <a href="#" class="btn btn-outline">Preview</a>
+                    <a href="http://ritelkit.localhost:1355" class="btn btn-outline" title="Local Dev Only">Dev Dashboard</a>
                 </div>
             </div>
 
@@ -469,7 +469,7 @@
                 <p>Aplikasi operasional setiap outlet. Fokus pada transaksi POS tercepat, manajemen inventaris lokal, dan sinkronisasi data instan ke pusat.</p>
                 <div class="card-links">
                     <a href="https://github.com/konxc/ritelkit-app" class="btn btn-primary">Repositori</a>
-                    <a href="#" class="btn btn-outline">Preview</a>
+                    <a href="http://kopi-toktok.app.localhost:1355" class="btn btn-outline" title="Local Dev Only">Dev App</a>
                 </div>
             </div>
         </section>

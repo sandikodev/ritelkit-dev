@@ -1,23 +1,31 @@
 #!/bin/bash
 
 # RitelKit Ecosystem Dev Runner
-# Menjalankan Central Dashboard (4322) dan Tenant App (4321) secara bersamaan.
+# Menjalankan Central Dashboard dan Tenant App dengan Portless Logic.
 
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}🚀 Memulai RitelKit Development Ecosystem dengan Concurrently...${NC}"
+echo -e "${BLUE}🚀 Memulai RitelKit Development Ecosystem dengan Portless...${NC}"
 
 # Cek apakah folder exist
 if [ ! -d "ritelkit" ] || [ ! -d "ritelkit-app" ]; then
     echo "❌ Error: Folder ritelkit atau ritelkit-app tidak ditemukan."
-    echo "💡 Pastikan Anda menjalankan script ini dari root ritelkit-dev."
     exit 1
 fi
 
+# Ensure dependencies are installed if node_modules missing
+if [ ! -d "node_modules" ] || [ ! -d "ritelkit/node_modules" ]; then
+    echo -e "${BLUE}📦 Menyinkronkan dependensi workspace...${NC}"
+    pnpm install
+fi
+
+# Jalankan dengan concurrently + portless
+# Dashboard: http://ritelkit.localhost:1355
+# App:       http://app.localhost:1355 (Wildcard: http://*.app.localhost:1355)
 npx concurrently \
   --prefix "[{name}]" \
   --names "Dashboard,App" \
   --prefix-colors "green.bold,blue.bold" \
-  "cd ritelkit && pnpm dev --port 4322" \
-  "cd ritelkit-app && pnpm dev --port 4321"
+  "npx portless --name ritelkit \"cd ritelkit && pnpm dev\"" \
+  "npx portless --name app \"cd ritelkit-app && pnpm dev\""
