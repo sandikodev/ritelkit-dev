@@ -27,5 +27,5 @@ npx concurrently \
   --prefix "[{name}]" \
   --names "Dashboard,App" \
   --prefix-colors "green.bold,blue.bold" \
-  "npx portless --name ritelkit \"cd ritelkit-site && pnpm dev\"" \
-  "npx portless --name app \"cd ritelkit-app && pnpm dev\""
+  "cd ritelkit-site && npx portless --name ritelkit pnpm dev" \
+  "cd ritelkit-app && npx portless --name app pnpm dev"
