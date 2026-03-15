@@ -1,12 +1,15 @@
 #!/bin/bash
 
 # RitelKit Ecosystem Dev Runner
-# Menjalankan Central Dashboard dan Tenant App dengan Portless Logic.
+# Smart Routing Logic:
+# - ritelkit.localhost              -> Landing (ritelkit-site)
+# - app.ritelkit.localhost          -> Admin Console (ritelkit-app)
+# - [tenant].ritelkit.localhost     -> Storefront (ritelkit-app)
 
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}🚀 Memulai RitelKit Development Ecosystem dengan Portless...${NC}"
+echo -e "${BLUE}🚀 Memulai RitelKit Portless Orchestrator...${NC}"
 
 # Cek apakah folder exist
 if [ ! -d "ritelkit-site" ] || [ ! -d "ritelkit-app" ]; then
@@ -20,14 +23,12 @@ if [ ! -d "node_modules" ] || [ ! -d "ritelkit-site/node_modules" ]; then
     pnpm install
 fi
 
-# Jalankan dengan concurrently + portless
-# Dashboard/Landing: http://ritelkit.localhost:1355
-# Operation App:     http://app.ritelkit.localhost:1355
-# Multi-tenant App:   http://[tenant].app.ritelkit.localhost:1355
-
+# Jalankan dengan concurrently
+# Dashboard/Site berjalan di port internal 4322 (akan di-proxy oleh App)
+# App berjalan via Portless sebagai 'ritelkit' (menangkap ritelkit.localhost dan *.ritelkit.localhost)
 npx concurrently \
   --prefix "[{name}]" \
   --names "Site,App" \
   --prefix-colors "green.bold,blue.bold" \
-  "cd ritelkit-site && npx portless --name ritelkit pnpm dev" \
-  "cd ritelkit-app && npx portless --name app.ritelkit pnpm dev"
+  "cd ritelkit-site && pnpm dev --port 4322" \
+  "cd ritelkit-app && npx portless --name ritelkit pnpm dev"
